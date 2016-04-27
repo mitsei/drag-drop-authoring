@@ -1,0 +1,201 @@
+<!-- HTML template for a bootstrap panel -->
+
+<div class="panel panel-default" aria-hidden="true" aria-labelledby="" tabindex="-1">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= title %></h3>
+    </div>
+    <div class="panel-body">
+        <div id="dragDropAccordion">
+            <h3 class="resetSides">Problem Settings</h3>
+            <div class="row resetSides ">
+                <div id="problemSettings">
+                    <div class="form-group">
+                        <input id="displayName" type="text" class="form-control" placeholder="Display Name"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 form-group">
+                            <label for="startDate">Start Date</label>
+                            <input type="text" id="startDate" class="roundedBorder"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 form-group">
+                            <label for="dueDate">Due Date</label>
+                            <input type="text" id="dueDate" class="roundedBorder"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 checkbox higherCheckbox">
+                            <label>
+                                <input type="checkbox" checked id="graded"/>
+                                Graded
+                            </label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <label for="weight">Weight</label>
+                            <input class="roundedBorder" id="weight" type="text" value="" placeholder="Weight, 0.0 to 1.0"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="showAnswer">Show Answer</label>
+                        <select class="form-control" id="showAnswer">
+                            <option selected value="closed">After due date / max attempts</option>
+                            <option value="never">Never</option>
+                            <option value="attempted">After first attempt</option>
+                            <option value="answered">After problem answered</option>
+                            <option value="finished">After due or answered</option>
+                            <option value="past_due">After due date</option>
+                            <option value="always">Always</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rerandomize">Re-randomize</label>
+                        <select class="form-control" id="rerandomize">
+                            <option selected value="always">After each attempt</option>
+                            <option value="onreset">When student presses reset button</option>
+                            <option value="never">All students see the same problem</option>
+                            <option value="per_student">Each student sees a unique (but persistent) problem</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attempts">Max attempts (>100 will be treated as infinity)</label>
+                        <input id="attempts" class="form-control" type="number" min="0" value="3" step="1" pattern="\d+"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="gracePeriod">Grace Period</label>
+                        <p>A default length of time that the problem is still accessible after the due
+                            date in the format "2 days 3 hours" or "1 day 15 minutes". Note, graceperiods
+                            are currently the easiest way to handle time zones. Due dates are all
+                            expressed in UTC.</p>
+                        <input class="form-control" id="gracePeriod" type="text" value="" placeholder="X days Y hours"/>
+                    </div>
+                </div>
+            </div>
+            <h3 class="resetSides">Drag & Drop Settings</h3>
+            <div class="row resetSides ">
+                <div id="dragDropSettings">
+                    <div class="checkbox">
+                        <label>
+                            <input id="targetOutline" type="checkbox"/>
+                            Show a target outline
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="multiplePerTarget" type="checkbox" checked="true"/>
+                            Multiple draggables allowed on single target
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="noLabels" type="checkbox" checked="true"/>
+                            Do not auto-populate draggable labels
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input id="includeLabelsForIcons" type="checkbox"/>
+                            Include labels in the XML
+                        </label>
+                    </div>
+                    <div id="longOrShort">
+                        <div class="slider-frame">
+                            <span class="slider-button">Short Form</span>
+                        </div>
+                        <div style="display:none;">
+                            <input type="checkbox" id="longForm"/>
+                        </div>
+                    </div>
+                    <div id="addDraggablesOrCut">
+                        <div class="slider-frame">
+                            <span class="slider-button">Upload Draggables</span>
+                        </div>
+                        <div style="display:none;">
+                            <input type="checkbox" id="cutDraggables"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="resetSides">Problem Details</h3>
+            <div class="row resetSides">
+                <div class="col-lg-3 col-md-4 col-sm-5 col-xs-5 roundedBorder leftPane">
+                    <div id="dragDropForm" class="section">
+                        <div id="backgroundFileBtn" class="btn-mask btn btn-primary">
+                            <span>Upload Background</span>
+                            <input class="btn-hidden" type="file" id="backgroundFile"/>
+                        </div>
+                    </div>
+                    <div id="draggablesForm" class="section">
+                        <div id="draggablesFileBtn" class="btn-mask btn btn-success">
+                            <span><i class="fa fa-plus"></i> Upload draggables</span>
+                            <input class="btn-hidden" multiple="multiple" type="file" id="draggableFile"/>
+                        </div>
+                        <ul class="list-group" id="currentDraggables">
+
+                        </ul>
+                    </div>
+                    <div id="targetsForm" class="section">
+                        <div class="btn btn-info btn-mask" id="targetsBtn" data-toggle="button">
+                            <span><i class="fa fa-pencil"></i> Draw targets</span>
+                        </div>
+                        <div id="targetsOptions" class="btn-group btn-group-sm" style="display:none;" data-toggle="buttons">
+                            <span class="btn btn-default">
+                                <input type="radio" name="targetTypes" id="drawCircle" data-type="circle">
+                                <i class="fa fa-circle-o"></i>
+                            </span>
+                            <span class="btn btn-default">
+                                <input type="radio" name="targetTypes" id="drawRect" data-type="rect">
+                                <i class="fa fa-square-o"></i>
+                            </span>
+                        </div>
+                        <ul class="list-group" id="currentTargets">
+
+                        </ul>
+                    </div>
+                    <div id="solutions" class="section">
+                        <div class="btn btn-warning btn-mask" id="solutionsBtn" data-toggle="button">
+                            <span><i class="fa fa-plus"></i> Add Solutions</span>
+                        </div>
+                        <div id="solutionsOptions" class="btn-group" style="display:none;" data-toggle="buttons">
+                            <span class="btn btn-default btn-mask solution-btn" title="Exact rule means that targets for draggable id's in user_answer are the same that targets from correct answer. ">
+                                <input type="radio" name="solutionTypes" id="solutionExact" value="exact"/>
+                                Exact
+                            </span>
+                            <span class="btn btn-default btn-mask solution-btn" title="Anyof rule allows draggables to be dragged to any of targets.">
+                                <input type="radio" name="solutionTypes" id="solutionAnyOf" value="anyof"/>
+                                Any of
+                            </span>
+                            <span class="btn btn-default btn-mask solution-btn" title="Unordered_equal rule allows draggables be dragged to targets unordered.">
+                                <input type="radio" name="solutionTypes" id="solutionUnordEq" value="unordered_equal"/>
+                                Unordered/equal
+                            </span>
+                            <span class="btn btn-default btn-mask solution-btn" title="Anyof but with a max number of draggable re-use.">
+                                <input type="radio" name="solutionTypes" id="solutionAnyOfNum" value="anyof+number"/>
+                                Any of + #
+                            </span>
+                            <span class="btn btn-default btn-mask solution-btn" title="Unordered_equal but with a max number of draggable re-use.">
+                                <input type="radio" name="solutionTypes" id="solutionUnordEqNum" value="unordered_equal+number"/>
+                                Unordered/equal + #
+                            </span>
+                        </div>
+                        <ul class="list-group" id="currentSolutions">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+                <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5 roundedBorder pull-right">
+                    <div id="imageName" class="text-center">
+                    </div>
+                    <div id="introText" style="display:none;">
+                        <textarea class="form-control" rows="2" placeholder="Problem Introduction"></textarea>
+                    </div>
+                    <div id="qText" style="display:none;">
+                        <textarea class="form-control" rows="2" placeholder="Question"></textarea>
+                    </div>
+                    <div class="backgroundImage" id="backgroundImageWrapper">
+                        <canvas id="targetCanvas"></canvas>
+                        <img src="" id="backgroundImage" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer"></div>
+</div>

@@ -1,0 +1,13 @@
+{
+  "name": "dndauthoring",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "^4.13.4"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
