@@ -1,7 +1,5 @@
 To run this app, you need to have Node.js installed
 
-$ npm install
-
 $ npm start
 
 navigate in a browser to localhost:8090/index.html
