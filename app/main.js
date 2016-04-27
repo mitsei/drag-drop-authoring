@@ -5,12 +5,12 @@ require.config({
     paths: {
         'backbone'              : '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min',
         'bootstrap'             : '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min',
-        'fabric'                : '//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.0/fabric.min.js',
-        'jquery'                : '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js',
-        'jquery-migrate'        : '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js',
-        'jquery-sidr'           : 'vendor/jquery.sidr',
-        'jquery-ui-1-10'        : 'vendor/jquery-ui-1.10.4/jqueryui',
-        'underscore'            : '//cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.2/lodash.min.js'
+        'fabric'                : '//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.6.0/fabric.require.min',
+        'jquery'                : '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min',
+        'jquery-migrate'        : '//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.0/jquery-migrate.min',
+        'jquery-sidr'           : '//cdnjs.cloudflare.com/ajax/libs/sidr/2.2.1/jquery.sidr.min',
+        'jquery-ui-1-10'        : '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min',
+        'underscore'            : '//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.2/lodash.min'
     },
     shim: {
         'backbone': {
@@ -18,7 +18,7 @@ require.config({
             exports: 'Backbone'
         },
         'bootstrap': {
-            deps: ['jquery', 'jquery-ui-1-10/button']
+            deps: ['jquery', 'jquery-ui-1-10']
         },
         'fabric': {
             exports: 'fabric'

@@ -10,12 +10,7 @@ define([
     'jquery-sidr',
     'bootstrap',
     'jquery-migrate',
-    'jquery-ui-1-10/accordion',
-    'jquery-ui-1-10/datepicker',
-    'jquery-ui-1-10/sortable',
-    'jquery-ui-1-10/droppable',
-    'jquery-ui-1-10/draggable'
-//    'jquery-ui-1-10'
+    'jquery-ui-1-10'
 ], function ($, _, Backbone, fabric, DragDropTemplate, ButtonsTemplate) {
     var _isDrawing = false,
             _startX = 0,
